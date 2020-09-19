@@ -4,8 +4,8 @@ import os
 
 AUTHOR = u'Thomas Wiecki'
 SITENAME = u'While My MCMC Gently Samples'
-SITESUBTITLE = """Bayesian modeling, Computational Psychiatry, and Python"""
-SITEURL = ''
+SITESUBTITLE = """Bayesian modeling, Data Science, and Python"""
+SITEURL = 'https://twiecki.io'
 
 TIMEZONE = 'USA/NYC'
 
@@ -18,19 +18,27 @@ DEFAULT_LANG = u'en'
 ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
+DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_PAGES_ON_MENU = False
+
 # Title menu options
-MENUITEMS = (('About', 'https://sites.google.com/a/brown.edu/lncc/home/members/thomas-wiecki'),
-             ('Archives', '/archives.html'),
-             ('Publications', 'http://scholar.google.com/citations?hl=en&user=s-Ikj-MAAAAJ&sortby=pubdate&view_op=list_works&gmla=AJsN-F5Oqgc3UBzbTBAJACr4gTDyi09-j1uryXtyXvDaEUrgtxiKmed0IIQlRvn9CHwFAcpHQB6ncpaBSY6vFsK6fazj3wmh6WLkuQdWdwuxd3uhwYN2kC8&undo=untrash_citations,W7OEmFMy1HYC'),
-             ('Contact', '#'))
+MENUITEMS = (
+             ('How PyMC3 can help you', '/pages/how-can-pymc3-help-me.html'),
+             ('Intuitive Bayesian Guide', '/pages/an-intuitive-guide-to-bayesian-statistics.html'),
+             #('Consulting', '/pages/consulting.html'),
+             #('Workshops', '/pages/workshops.html'),
+             ('Podcast', 'http://pydata-podcast.com'),
+             #('Email', 'https://spamty.eu/show/v5/75/xDU3fnp6wdoZgiWHKw/'),
+             ('Archive', '/archives.html'),
+             )
 
 NEWEST_FIRST_ARCHIVES = False
 
 #Github include settings
-GITHUB_USER = 'twiecki'
-GITHUB_REPO_COUNT = 3
-GITHUB_SKIP_FORK = True
-GITHUB_SHOW_USER_LINK = True
+#GITHUB_USER = 'twiecki'
+#GITHUB_REPO_COUNT = 3
+#GITHUB_SKIP_FORK = True
+#GITHUB_SHOW_USER_LINK = True
 
 # Blogroll
 #LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
@@ -56,14 +64,18 @@ CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
 # Theme and plugins
-THEME = 'pelican-octopress-theme/'
-PLUGIN_PATHS = 'pelican-plugins'
+THEME = 'pelican-octopress-theme'
+PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
-           'liquid_tags.include_code', 'liquid_tags.notebook',
-           'liquid_tags.literal']
+           'liquid_tags.include_code', 'liquid_tags.notebook', 'render_math',
+           'liquid_tags.literal', 'i18n_subsites']
 
 DISPLAY_PAGES_ON_MENU = False
 
+JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
+
+CATEGORY_SAVE_AS = ''
+TAGS_SAVE_AS = ''
 
 # The theme file should be updated so that the base header contains the line:
 #
@@ -81,9 +93,6 @@ else:
 
 # Sharing
 TWITTER_USER = 'twiecki'
-GOOGLE_PLUS_USER = '107323607569066774338' #thomas.wiecki'
-GOOGLE_PLUS_ONE = True
-GOOGLE_PLUS_HIDDEN = False
 FACEBOOK_LIKE = False
 TWITTER_TWEET_BUTTON = True
 TWITTER_LATEST_TWEETS = True
@@ -92,11 +101,10 @@ TWITTER_TWEET_COUNT = 3
 TWITTER_SHOW_REPLIES = 'false'
 TWITTER_SHOW_FOLLOWER_COUNT = 'true'
 
-
 # RSS/Atom feeds
 FEED_DOMAIN = SITEURL
 FEED_ATOM = 'atom.xml'
 
-
 # Search
-SEARCH_BOX = True
+SEARCH_BOX = False
+SITESEARCH = 'https://google.com/search'

@@ -2,16 +2,12 @@ Title: Animating MCMC with PyMC3 and Matplotlib
 date: 2014-1-2 09:00
 comments: true
 slug: visualizing-mcmc
-tags: bayesian statistics
 
 Here's the deal: I used [PyMC3](https://github.com/pymc-devs/pymc),
 [matplotlib](http://matplotlib.org/), and [Jake Vanderplas'](http://jakevdp.github.io/)
 [JSAnimation](https://github.com/jakevdp/JSAnimation) to create
 javascript animations of three MCMC sampling algorithms --
 [Metropolis-Hastings](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm), [slice sampling](https://en.wikipedia.org/wiki/Slice_sampling) and [NUTS](http://arxiv.org/abs/1111.4246).
-
-Note that this post uses the html5 video tag which doesn't seem to
-work for Firefox but should work on any other browser.
 
 I like visualizations because they provide a good intuition for how
 the samplers work and what problems they can run into.
@@ -20,7 +16,7 @@ You can download the full notebook [here](https://rawgithub.com/twiecki/WhileMyM
 video embedding due to the size of the animations if they are not
 compressed. The notebook contains code for both.
 
-The model is a simple linear model as explained in my [previous blog post on Bayesian GLMs](http://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/). Essentially,
+The model is a simple linear model as explained in my [previous blog post on Bayesian GLMs](https://twiecki.github.io/blog/2013/08/12/bayesian-glms-1/). Essentially,
 I generated some data and estimate `intercept` and `slope`. In the
 lower left corner is the *joint* posterior while the plot above shows
 the *trace* of the *marginal* posterior of the `intercept` while the
@@ -34,7 +30,7 @@ performs. The code uses matplotlib's handy `FuncAnimation` (see
 [here](http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/)
 for a tutorial), my own animation code, and the [recently merged iterative sampling function `iter_sample()`](https://github.com/pymc-devs/pymc/pull/433).
 
-{% notebook sample_animation.ipynb cells[5:6] %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/23zAmLruZVA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 As you can see, there is quite some correlation between `intercept`
 and `slope` -- if we believe in a higher intercept we must also
@@ -51,15 +47,15 @@ random-walk behavior you can see which makes sampling inefficient (for
 a good intuition about this "drunken walk", see
 [here](http://healthyalgorithms.com/2010/03/12/a-useful-metaphor-for-explaining-mcmc/)).
 
-## Gibbs sampling
+## Slice sampling
 
-Lets see how Gibbs sampling fares with a slice step method.
+Lets see how Slice sampling fares.
 
-{% notebook sample_animation.ipynb cells[6:7] %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5mMwKG7rbZQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-As you can see, Gibbs sampling does a much better job. For one thing,
+As you can see, slice sampling does a much better job. For one thing,
 there are no rejections (which is a property of the algorithm). But
-there's still room for improvement. At the core, Gibbs sampling always
+there's still room for improvement. At the core, slice sampling always
 updates one random variable at a time while keeping all others
 constant. This property leads to small steps being taken (imagine
 trying to move along a diagonal area on the chess board with a Rook)
@@ -74,7 +70,7 @@ sampler can actually move diagonally as well (more like the Queen). As
 you can see, it does a much better job at exploring the posterior and
 takes much wider steps.
 
-{% notebook sample_animation.ipynb cells[7:8] %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Fq_hlq8AfYo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Mesmerizing, ain't it?
 
